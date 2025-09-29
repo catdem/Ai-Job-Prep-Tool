@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Moodboard - AI Job Prep Tool</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for Design System */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --accent-color: #f59e0b;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    
+    --border-color: #e2e8f0;
+    --border-light: #f1f5f9;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    font-size: 16px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Navigation */
+.navbar {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--bg-secondary);
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-tertiary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Features Grid */
+.features {
+    padding: 4rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-primary);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Results Display */
+.results-section {
+    padding: 2rem 0;
+    background-color: var(--bg-secondary);
+}
+
+.results-container {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.results-content {
+    line-height: 1.8;
+}
+
+.results-content h3 {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.results-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.results-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+    background-color: var(--text-primary);
+    color: white;
+    margin-top: 4rem;
+}
+
+.footer-main {
+    padding: 3rem 0 2rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.footer-tagline {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.footer-nav {
+    list-style: none;
+}
+
+.footer-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+    color: white;
+}
+
+.footer-contact p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.footer-contact a {
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+}
+
+.social-links svg {
+    fill: currentColor;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.footer-bottom a {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--bg-primary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow-md);
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 1rem 0;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.125rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .features {
+        padding: 2rem 0;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Career Moodboard Specific Styles */
+.search-section {
+    padding: 2rem 0;
+    background-color: var(--bg-secondary);
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Image Results */
+.image-results {
+    padding: 2rem 0;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.image-card {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.image-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.search-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.add-to-moodboard {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.add-to-moodboard::before {
+    content: '+';
+}
+
+.image-card:hover .add-to-moodboard {
+    opacity: 1;
+}
+
+.add-to-moodboard:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+/* Load More Button */
+.load-more-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn-load-more {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-load-more:hover {
+    background-color: var(--bg-tertiary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-load-more:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.no-more-message {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Moodboard Section */
+.moodboard-section {
+    padding: 3rem 0;
+    background-color: var(--bg-secondary);
+}
+
+.moodboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.moodboard-header h2 {
+    color: var(--text-primary);
+    font-size: 2rem;
+}
+
+.moodboard-canvas {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    min-height: 300px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: start;
+    transition: all 0.3s ease;
+}
+
+.moodboard-canvas.drag-over {
+    border-color: var(--primary-color);
+    background-color: var(--bg-secondary);
+}
+
+.empty-moodboard {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.moodboard-item {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    cursor: move;
+}
+
+.moodboard-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.moodboard-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+.moodboard-item.drag-over {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgb(37 99 235 / 0.2);
+}
+
+.moodboard-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 28px;
+    height: 28px;
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.moodboard-item:hover .remove-btn {
+    opacity: 1;
+}
+
+.remove-btn:hover {
+    background-color: #dc2626;
+    transform: scale(1.1);
+}
+
+/* Arrow Controls */
+.arrow-controls {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.moodboard-item:hover .arrow-controls {
+    opacity: 1;
+}
+
+.arrow-btn {
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.arrow-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Export Options */
+.export-options {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.export-options h3 {
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.export-options .btn {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.export-message {
+    background: var(--success-color);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* API Message Styling */
+.api-message {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: var(--radius-md);
+    color: #856404;
+}
+
+.api-message strong {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.api-message a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.api-message code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Responsive Design for Moodboard */
+@media (max-width: 768px) {
+    .search-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-input-group .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .moodboard-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .moodboard-header .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .moodboard-canvas {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        padding: 1rem;
+    }
+    
+    .export-options .btn {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .moodboard-canvas {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .moodboard-image {
+        height: 120px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="logo-img">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Background circle -->
+                            <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" stroke="none"/>
+                            
+                            <!-- AI Brain/Circuit pattern -->
+                            <g fill="white" opacity="0.9">
+                                <!-- Central node -->
+                                <circle cx="50" cy="50" r="4"/>
+                                
+                                <!-- Connection lines -->
+                                <line x1="50" y1="50" x2="35" y2="35" stroke="white" stroke-width="2" opacity="0.7"/>
+                                <line x1="50" y1="50" x2="65" y2="35" stroke="white" stroke-width="2" opacity="0.7"/>
+                                <line x1="50" y1="50" x2="35" y2="65" stroke="white" stroke-width="2" opacity="0.7"/>
+                                <line x1="50" y1="50" x2="65" y2="65" stroke="white" stroke-width="2" opacity="0.7"/>
+                                <line x1="50" y1="50" x2="30" y2="50" stroke="white" stroke-width="2" opacity="0.7"/>
+                                <line x1="50" y1="50" x2="70" y2="50" stroke="white" stroke-width="2" opacity="0.7"/>
+                                
+                                <!-- Outer nodes -->
+                                <circle cx="35" cy="35" r="3"/>
+                                <circle cx="65" cy="35" r="3"/>
+                                <circle cx="35" cy="65" r="3"/>
+                                <circle cx="65" cy="65" r="3"/>
+                                <circle cx="30" cy="50" r="3"/>
+                                <circle cx="70" cy="50" r="3"/>
+                                
+                                <!-- Additional connection nodes -->
+                                <circle cx="25" cy="30" r="2"/>
+                                <circle cx="75" cy="30" r="2"/>
+                                <circle cx="25" cy="70" r="2"/>
+                                <circle cx="75" cy="70" r="2"/>
+                                
+                                <!-- Connection lines to additional nodes -->
+                                <line x1="35" y1="35" x2="25" y2="30" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="65" y1="35" x2="75" y2="30" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="35" y1="65" x2="25" y2="70" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="65" y1="65" x2="75" y2="70" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                            </g>
+                            
+                            <!-- Subtle highlight -->
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                        </svg>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="cv-feedback.html" class="nav-link">CV Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="interview-questions.html" class="nav-link">Interview Questions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pitch-trainer.html" class="nav-link">Pitch Trainer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="career-moodboard.html" class="nav-link active">Career Moodboard</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Visualize your career goals</h1>
+                <p class="hero-description">Search images and build your personal career moodboard with inspiration powered by Unsplash.</p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <div class="search-input-group">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search career inspiration...">
+                        <button id="searchBtn" class="btn btn-primary">Search Images</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Results Grid -->
+        <section class="image-results">
+            <div class="container">
+                <div id="loading" class="loading" style="display: none;">
+                    <p>Searching for images...</p>
+                </div>
+                <div id="results" class="results-grid"></div>
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="btn btn-load-more">Load More</button>
+                    <p id="no-more-results" class="no-more-message" style="display: none;">No more images available.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moodboard Section -->
+        <section class="moodboard-section">
+            <div class="container">
+                <div class="moodboard-header">
+                    <h2>Your Career Moodboard</h2>
+                    <button id="export-btn" class="btn btn-secondary">Export Moodboard</button>
+                </div>
+                <div id="moodboard" class="moodboard-canvas">
+                    <div class="empty-moodboard">
+                        <p>Start building your moodboard by searching and adding images above.</p>
+                    </div>
+                </div>
+                <div id="export-options" class="export-options" style="display: none;">
+                    <h3>Export Options</h3>
+                    <button id="export-png" class="btn btn-primary">Download as PNG</button>
+                    <button id="export-pdf" class="btn btn-primary">Download as PDF</button>
+                    <button id="cancel-export" class="btn btn-secondary">Cancel</button>
+                </div>
+                <div id="export-message" class="export-message" style="display: none;">
+                    <p>Your moodboard has been downloaded successfully.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-container">
+                <!-- Logo and Tagline -->
+                <div class="footer-section">
+                    <h3>AI Job Prep Tool</h3>
+                    <p class="footer-tagline">Smart preparation for your next career step.</p>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul class="footer-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cv-feedback.html">CV Feedback</a></li>
+                        <li><a href="interview-questions.html">Interview Questions</a></li>
+                        <li><a href="pitch-trainer.html">Pitch Trainer</a></li>
+                        <li><a href="career-moodboard.html">Career Moodboard</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="footer-section footer-contact">
+                    <h3>Contact</h3>
+                    <p>Contact us at <a href="mailto:info@aijobprep.com">info@aijobprep.com</a></p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mini Footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <span>© 2025 AI Job Prep Tool. All rights reserved.</span>
+                <a href="mailto:info@aijobprep.com">info@aijobprep.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Toggle mobile menu
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (hamburger && navMenu) {
+                    const isClickInsideNav = navMenu.contains(event.target);
+                    const isClickOnHamburger = hamburger.contains(event.target);
+                    
+                    if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+            
+            smoothScrollLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Only prevent default for actual anchor links, not placeholder links
+                    if (href !== '#' && href.length > 1) {
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            e.preventDefault();
+                            const offsetTop = targetElement.offsetTop - 80; // Account for fixed header
+                            
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Add active state to navigation links
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Feature card hover effects
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animatedElements = document.querySelectorAll('.feature-card, .hero h1, .hero p');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+    <script>
+        // Pexels API configuration
+        const PEXELS_API_KEY = 'YOUR_PEXELS_API_KEY'; // Replace with your actual API key
+        const PEXELS_BASE_URL = 'https://api.pexels.com/v1';
+
+        // Unsplash API configuration
+        const UNSPLASH_ACCESS_KEY = 'YOUR_UNSPLASH_ACCESS_KEY'; // Replace with your actual access key
+        const UNSPLASH_BASE_URL = 'https://api.unsplash.com';
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const imageResults = document.getElementById('imageResults');
+        const moodboardContainer = document.getElementById('moodboardContainer');
+        const exportPngBtn = document.getElementById('exportPng');
+        const exportPdfBtn = document.getElementById('exportPdf');
+        const clearMoodboardBtn = document.getElementById('clearMoodboard');
+        const loadMoreBtn = document.getElementById('loadMore');
+
+        // State management
+        let currentQuery = '';
+        let currentPage = 1;
+        let moodboardImages = [];
+        let isLoading = false;
+
+        // Load moodboard from localStorage on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMoodboardFromStorage();
+            updateMoodboardDisplay();
+        });
+
+        // Search functionality
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Load more functionality
+        loadMoreBtn.addEventListener('click', loadMoreImages);
+
+        // Export functionality
+        exportPngBtn.addEventListener('click', () => exportMoodboard('png'));
+        exportPdfBtn.addEventListener('click', () => exportMoodboard('pdf'));
+
+        // Clear moodboard
+        clearMoodboardBtn.addEventListener('click', clearMoodboard);
+
+        async function performSearch() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            currentQuery = query;
+            currentPage = 1;
+            imageResults.innerHTML = '';
+            loadMoreBtn.style.display = 'none';
+            
+            await searchImages(query);
+        }
+
+        async function loadMoreImages() {
+            if (!currentQuery || isLoading) return;
+            
+            currentPage++;
+            await searchImages(currentQuery, true);
+        }
+
+        async function searchImages(query, append = false) {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.textContent = 'Searching for images...';
+            
+            if (!append) {
+                imageResults.appendChild(loadingDiv);
+            }
+
+            try {
+                // Try Pexels first
+                let images = await searchPexels(query, currentPage);
+                
+                // If Pexels fails or returns no results, try Unsplash
+                if (!images || images.length === 0) {
+                    images = await searchUnsplash(query, currentPage);
+                }
+                
+                // If both APIs fail, use Lorem Picsum with demo images
+                if (!images || images.length === 0) {
+                    images = generateDemoImages(query);
+                }
+
+                if (loadingDiv.parentNode) {
+                    loadingDiv.remove();
+                }
+
+                if (images && images.length > 0) {
+                    displayImages(images, append);
+                    loadMoreBtn.style.display = 'block';
+                } else {
+                    if (!append) {
+                        imageResults.innerHTML = '<p>No images found. Try a different search term.</p>';
+                    }
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                if (loadingDiv.parentNode) {
+                    loadingDiv.remove();
+                }
+                
+                // Fallback to demo images
+                const demoImages = generateDemoImages(query);
+                displayImages(demoImages, append);
+                loadMoreBtn.style.display = 'block';
+            }
+            
+            isLoading = false;
+        }
+
+        async function searchPexels(query, page = 1) {
+            if (!PEXELS_API_KEY || PEXELS_API_KEY === 'YOUR_PEXELS_API_KEY') {
+                throw new Error('Pexels API key not configured');
+            }
+
+            const response = await fetch(`${PEXELS_BASE_URL}/search?query=${encodeURIComponent(query)}&page=${page}&per_page=20`, {
+                headers: {
+                    'Authorization': PEXELS_API_KEY
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Pexels API request failed');
+            }
+
+            const data = await response.json();
+            return data.photos.map(photo => ({
+                id: `pexels_${photo.id}`,
+                url: photo.src.medium,
+                thumbnail: photo.src.small,
+                alt: photo.alt || query,
+                source: 'Pexels',
+                photographer: photo.photographer
+            }));
+        }
+
+        async function searchUnsplash(query, page = 1) {
+            if (!UNSPLASH_ACCESS_KEY || UNSPLASH_ACCESS_KEY === 'YOUR_UNSPLASH_ACCESS_KEY') {
+                throw new Error('Unsplash API key not configured');
+            }
+
+            const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?query=${encodeURIComponent(query)}&page=${page}&per_page=20`, {
+                headers: {
+                    'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Unsplash API request failed');
+            }
+
+            const data = await response.json();
+            return data.results.map(photo => ({
+                id: `unsplash_${photo.id}`,
+                url: photo.urls.regular,
+                thumbnail: photo.urls.small,
+                alt: photo.alt_description || query,
+                source: 'Unsplash',
+                photographer: photo.user.name
+            }));
+        }
+
+        function generateDemoImages(query) {
+            const demoImages = [];
+            const imageCount = 20;
+            const categories = ['business', 'technology', 'people', 'nature', 'abstract', 'city', 'food', 'fashion'];
+            
+            for (let i = 0; i < imageCount; i++) {
+                const category = categories[i % categories.length];
+                const seed = `${query}-${category}-${i}`;
+                demoImages.push({
+                    id: `demo_${seed}`,
+                    url: `https://picsum.photos/seed/${seed}/400/300`,
+                    thumbnail: `https://picsum.photos/seed/${seed}/200/150`,
+                    alt: `${query} - ${category}`,
+                    source: 'Lorem Picsum',
+                    photographer: 'Demo'
+                });
+            }
+            
+            return demoImages;
+        }
+
+        function displayImages(images, append = false) {
+            if (!append) {
+                imageResults.innerHTML = '';
+            }
+
+            images.forEach(image => {
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'image-item';
+                imageDiv.innerHTML = `
+                    <img src="${image.thumbnail}" alt="${image.alt}" loading="lazy">
+                    <div class="image-overlay">
+                        <button class="add-to-moodboard" onclick="addToMoodboard('${image.id}', '${image.url}', '${image.alt.replace(/'/g, "\\'")}')">
+                            Add to Moodboard
+                        </button>
+                        <div class="image-info">
+                            <small>Photo by ${image.photographer} on ${image.source}</small>
+                        </div>
+                    </div>
+                `;
+                imageResults.appendChild(imageDiv);
+            });
+        }
+
+        function addToMoodboard(id, url, alt) {
+            // Check if image is already in moodboard
+            if (moodboardImages.find(img => img.id === id)) {
+                alert('This image is already in your moodboard!');
+                return;
+            }
+
+            const imageData = {
+                id: id,
+                url: url,
+                alt: alt,
+                addedAt: new Date().toISOString()
+            };
+
+            moodboardImages.push(imageData);
+            saveMoodboardToStorage();
+            updateMoodboardDisplay();
+            
+            // Show success message
+            showNotification('Image added to moodboard!');
+        }
+
+        function updateMoodboardDisplay() {
+            if (moodboardImages.length === 0) {
+                moodboardContainer.innerHTML = '<p class="empty-moodboard">Your moodboard is empty. Search for images and add them here!</p>';
+                return;
+            }
+
+            moodboardContainer.innerHTML = '';
+            
+            moodboardImages.forEach((image, index) => {
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'moodboard-item';
+                imageDiv.draggable = true;
+                imageDiv.dataset.index = index;
+                imageDiv.innerHTML = `
+                    <img src="${image.url}" alt="${image.alt}" loading="lazy">
+                    <div class="moodboard-overlay">
+                        <button class="remove-from-moodboard" onclick="removeFromMoodboard('${image.id}')">
+                            ×
+                        </button>
+                    </div>
+                `;
+                
+                // Add drag and drop event listeners
+                imageDiv.addEventListener('dragstart', handleDragStart);
+                imageDiv.addEventListener('dragover', handleDragOver);
+                imageDiv.addEventListener('drop', handleDrop);
+                imageDiv.addEventListener('dragend', handleDragEnd);
+                
+                moodboardContainer.appendChild(imageDiv);
+            });
+        }
+
+        function removeFromMoodboard(id) {
+            moodboardImages = moodboardImages.filter(img => img.id !== id);
+            saveMoodboardToStorage();
+            updateMoodboardDisplay();
+            showNotification('Image removed from moodboard!');
+        }
+
+        function clearMoodboard() {
+            if (moodboardImages.length === 0) return;
+            
+            if (confirm('Are you sure you want to clear your entire moodboard?')) {
+                moodboardImages = [];
+                saveMoodboardToStorage();
+                updateMoodboardDisplay();
+                showNotification('Moodboard cleared!');
+            }
+        }
+
+        async function exportMoodboard(format) {
+            if (moodboardImages.length === 0) {
+                alert('Your moodboard is empty! Add some images first.');
+                return;
+            }
+
+            const exportBtn = format === 'png' ? exportPngBtn : exportPdfBtn;
+            const originalText = exportBtn.textContent;
+            exportBtn.textContent = 'Exporting...';
+            exportBtn.disabled = true;
+
+            try {
+                if (format === 'png') {
+                    await exportAsPNG();
+                } else {
+                    await exportAsPDF();
+                }
+                showNotification(`Moodboard exported as ${format.toUpperCase()}!`);
+            } catch (error) {
+                console.error('Export error:', error);
+                alert('Export failed. Please try again.');
+            } finally {
+                exportBtn.textContent = originalText;
+                exportBtn.disabled = false;
+            }
+        }
+
+        async function exportAsPNG() {
+            // Create a canvas for the moodboard
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size (adjust as needed)
+            const canvasWidth = 1200;
+            const canvasHeight = 800;
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            
+            // Fill background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+            // Calculate grid layout
+            const cols = Math.ceil(Math.sqrt(moodboardImages.length));
+            const rows = Math.ceil(moodboardImages.length / cols);
+            const imageWidth = canvasWidth / cols;
+            const imageHeight = canvasHeight / rows;
+            
+            // Load and draw images
+            const imagePromises = moodboardImages.map((imageData, index) => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.onload = () => {
+                        const col = index % cols;
+                        const row = Math.floor(index / cols);
+                        const x = col * imageWidth;
+                        const y = row * imageHeight;
+                        
+                        // Draw image maintaining aspect ratio
+                        const aspectRatio = img.width / img.height;
+                        let drawWidth = imageWidth;
+                        let drawHeight = imageHeight;
+                        let drawX = x;
+                        let drawY = y;
+                        
+                        if (aspectRatio > imageWidth / imageHeight) {
+                            drawHeight = imageWidth / aspectRatio;
+                            drawY = y + (imageHeight - drawHeight) / 2;
+                        } else {
+                            drawWidth = imageHeight * aspectRatio;
+                            drawX = x + (imageWidth - drawWidth) / 2;
+                        }
+                        
+                        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        // Draw placeholder if image fails to load
+                        ctx.fillStyle = '#f0f0f0';
+                        ctx.fillRect(x, y, imageWidth, imageHeight);
+                        ctx.fillStyle = '#666';
+                        ctx.font = '16px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Image not available', x + imageWidth/2, y + imageHeight/2);
+                        resolve();
+                    };
+                    img.src = imageData.url;
+                });
+            });
+            
+            await Promise.all(imagePromises);
+            
+            // Download the canvas as PNG
+            const link = document.createElement('a');
+            link.download = `moodboard-${new Date().toISOString().split('T')[0]}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        async function exportAsPDF() {
+            // For PDF export, we'll use the same canvas approach but convert to PDF
+            // This is a simplified version - in a real app, you might want to use a library like jsPDF
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size for PDF (A4 proportions)
+            const canvasWidth = 1200;
+            const canvasHeight = 1600;
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            
+            // Fill background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+            // Add title
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Career Moodboard', canvasWidth / 2, 50);
+            
+            // Add date
+            ctx.font = '16px Arial';
+            ctx.fillText(new Date().toLocaleDateString(), canvasWidth / 2, 80);
+            
+            // Calculate grid layout for images (leaving space for title)
+            const availableHeight = canvasHeight - 120;
+            const cols = Math.ceil(Math.sqrt(moodboardImages.length));
+            const rows = Math.ceil(moodboardImages.length / cols);
+            const imageWidth = canvasWidth / cols;
+            const imageHeight = availableHeight / rows;
+            
+            // Load and draw images
+            const imagePromises = moodboardImages.map((imageData, index) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.onload = () => {
+                        const col = index % cols;
+                        const row = Math.floor(index / cols);
+                        const x = col * imageWidth;
+                        const y = 120 + row * imageHeight;
+                        
+                        // Draw image maintaining aspect ratio
+                        const aspectRatio = img.width / img.height;
+                        let drawWidth = imageWidth - 10; // Add some padding
+                        let drawHeight = imageHeight - 10;
+                        let drawX = x + 5;
+                        let drawY = y + 5;
+                        
+                        if (aspectRatio > drawWidth / drawHeight) {
+                            drawHeight = drawWidth / aspectRatio;
+                            drawY = y + (imageHeight - drawHeight) / 2;
+                        } else {
+                            drawWidth = drawHeight * aspectRatio;
+                            drawX = x + (imageWidth - drawWidth) / 2;
+                        }
+                        
+                        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        // Draw placeholder if image fails to load
+                        const col = index % cols;
+                        const row = Math.floor(index / cols);
+                        const x = col * imageWidth + 5;
+                        const y = 120 + row * imageHeight + 5;
+                        
+                        ctx.fillStyle = '#f0f0f0';
+                        ctx.fillRect(x, y, imageWidth - 10, imageHeight - 10);
+                        ctx.fillStyle = '#666';
+                        ctx.font = '14px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Image not available', x + (imageWidth - 10)/2, y + (imageHeight - 10)/2);
+                        resolve();
+                    };
+                    img.src = imageData.url;
+                });
+            });
+            
+            await Promise.all(imagePromises);
+            
+            // Convert canvas to image and download
+            // Note: This creates a PNG file, not a true PDF. For true PDF, you'd need a library like jsPDF
+            const link = document.createElement('a');
+            link.download = `moodboard-${new Date().toISOString().split('T')[0]}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Drag and drop functionality for reordering
+        let draggedElement = null;
+
+        function handleDragStart(e) {
+            draggedElement = this;
+            this.style.opacity = '0.5';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            
+            if (this !== draggedElement) {
+                const draggedIndex = parseInt(draggedElement.dataset.index);
+                const targetIndex = parseInt(this.dataset.index);
+                
+                // Reorder the array
+                const draggedImage = moodboardImages[draggedIndex];
+                moodboardImages.splice(draggedIndex, 1);
+                moodboardImages.splice(targetIndex, 0, draggedImage);
+                
+                saveMoodboardToStorage();
+                updateMoodboardDisplay();
+            }
+        }
+
+        function handleDragEnd(e) {
+            this.style.opacity = '';
+            draggedElement = null;
+        }
+
+        // Local storage functions
+        function saveMoodboardToStorage() {
+            localStorage.setItem('careerMoodboard', JSON.stringify(moodboardImages));
+        }
+
+        function loadMoodboardFromStorage() {
+            const saved = localStorage.getItem('careerMoodboard');
+            if (saved) {
+                try {
+                    moodboardImages = JSON.parse(saved);
+                } catch (error) {
+                    console.error('Error loading moodboard from storage:', error);
+                    moodboardImages = [];
+                }
+            }
+        }
+
+        // Utility function to show notifications
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4CAF50;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 4px;
+                z-index: 1000;
+                font-size: 14px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                transition: opacity 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
